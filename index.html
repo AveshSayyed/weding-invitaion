@@ -850,23 +850,52 @@
 </div><!-- /page -->
 
 <script>
-  // ── EVENT FILTERING ──
-  function filterEvents() {
+  // ── ADVANCED PERSONALIZATION SYSTEM ──
+  function initializeInvitation() {
     const params = new URLSearchParams(window.location.search);
-    const eventsParam = params.get('events');
+    const ed = params.get('ed');
     
-    // If no events parameter, show all events
-    if (!eventsParam) {
-      document.querySelectorAll('[data-event]').forEach(card => {
-        card.style.display = '';
-      });
+    // Default: show all events, Faaiza first
+    if (!ed) {
+      showAllEvents();
+      setNameOrder('faaiza');
       return;
     }
     
-    // Parse the events from URL (comma-separated, case-insensitive)
-    const allowedEvents = eventsParam.toLowerCase().split(',').map(e => e.trim());
+    // Parse ed parameter: first char is person (a/f), rest are event dates (4/6/7)
+    const personInitial = ed.charAt(0).toLowerCase();
+    const eventDates = ed.slice(1).split('').map(Number);
     
-    // Show/hide events based on filter
+    // Validate format
+    if (!['a', 'f'].includes(personInitial) || eventDates.some(d => ![4, 6, 7].includes(d))) {
+      console.warn('Invalid ed parameter format');
+      showAllEvents();
+      setNameOrder('faaiza');
+      return;
+    }
+    
+    // Filter events based on dates
+    filterEventsByDate(eventDates);
+    
+    // Set name order throughout the page
+    setNameOrder(personInitial);
+  }
+  
+  function showAllEvents() {
+    document.querySelectorAll('[data-event]').forEach(card => {
+      card.style.display = '';
+    });
+  }
+  
+  function filterEventsByDate(dates) {
+    const eventMap = {
+      4: 'haldi',
+      6: 'nikah',
+      7: 'walima'
+    };
+    
+    const allowedEvents = dates.map(d => eventMap[d]).filter(e => e);
+    
     document.querySelectorAll('[data-event]').forEach(card => {
       const eventType = card.getAttribute('data-event').toLowerCase();
       if (allowedEvents.includes(eventType)) {
@@ -877,8 +906,52 @@
     });
   }
   
-  // Run filter on page load
-  filterEvents();
+  function setNameOrder(person) {
+    if (person === 'a') {
+      // Avesh first (Avesh's side)
+      // Update hero names
+      const heroNames = document.querySelector('.hero-names');
+      heroNames.innerHTML = 'Avesh<br><span class="hero-ampersand">&</span><br>Faaiza';
+      
+      // Update profile cards order - swap positions
+      const profilesContainer = document.querySelector('.profiles');
+      const profileCards = Array.from(profilesContainer.querySelectorAll('.profile-card'));
+      if (profileCards.length === 2) {
+        // Swap: put groom first
+        profilesContainer.innerHTML = '';
+        profilesContainer.appendChild(profileCards[1]); // Groom (Avesh)
+        profilesContainer.appendChild(profileCards[0]); // Bride (Faaiza)
+      }
+      
+      // Update profile tags to reflect perspective
+      const profileTags = profilesContainer.querySelectorAll('.profile-tag');
+      if (profileTags.length >= 2) {
+        profileTags[0].textContent = 'The Groom';
+        profileTags[1].textContent = 'The Bride';
+      }
+      
+      // Update footer names
+      const footerNames = document.querySelector('.footer-names');
+      if (footerNames) {
+        footerNames.textContent = 'Avesh & Faaiza';
+      }
+    } else {
+      // Faaiza first (Faaiza's side) - default
+      // Update hero names
+      const heroNames = document.querySelector('.hero-names');
+      heroNames.innerHTML = 'Faaiza<br><span class="hero-ampersand">&</span><br>Avesh';
+      
+      // Profile cards stay in original order
+      // Update footer names
+      const footerNames = document.querySelector('.footer-names');
+      if (footerNames) {
+        footerNames.textContent = 'Faaiza & Avesh';
+      }
+    }
+  }
+  
+  // Initialize on page load
+  initializeInvitation();
 
   // ── COUNTDOWN ──
   function updateCountdown() {
