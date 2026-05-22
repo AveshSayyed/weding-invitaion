@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Faaiza & Avesh — Wedding Invitation</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&family=Playfair+Display:wght@700&family=Noto+Serif+Display:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,6 +21,13 @@
     --text-dark: #4a3840;
     --text-mid: #7a6070;
     --text-light: #a0909a;
+    
+    /* FONT OPTIONS - Change one of these values to switch fonts globally */
+    /* Option 1: --font-names: 'Great Vibes', cursive; (Current - stylized script) */
+    /* Option 2: --font-names: 'Playfair Display', serif; (Elegant serif with proper capitals) */
+    /* Option 3: --font-names: 'Noto Serif Display', serif; (Modern serif with proper capitals) */
+    /* Option 4: --font-names: 'Tangerine', cursive; (Flowing script with proper capitals) */
+    --font-names: 'Great Vibes', cursive;
   }
 
   html { scroll-behavior: smooth; }
@@ -99,7 +106,7 @@
   }
 
   .hero-names {
-    font-family: 'Great Vibes', cursive;
+    font-family: var(--font-names);
     font-size: clamp(54px, 15vw, 78px);
     color: var(--text-dark);
     line-height: 1.05;
@@ -191,7 +198,7 @@
     font-weight: 500;
   }
   .section-title {
-    font-family: 'Great Vibes', cursive;
+    font-family: var(--font-names);
     font-size: 38px;
     color: var(--text-dark);
     text-align: center;
@@ -397,6 +404,7 @@
   .itinerary-section {
     padding: 48px 20px;
     background: linear-gradient(180deg, #f8eef5 0%, var(--cream) 100%);
+    overflow-x: hidden;
   }
   .itinerary-title {
     font-family: 'Great Vibes', cursive;
@@ -407,12 +415,14 @@
   }
   .timeline {
     position: relative;
-    padding-left: 20px;
+    padding-left: 40px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 30px;
+    left: 8px;
     top: 20px;
     bottom: 20px;
     width: 1.5px;
@@ -424,7 +434,8 @@
     border-radius: 20px;
     padding: 20px 18px 18px;
     margin-bottom: 16px;
-    margin-left: 24px;
+    margin-left: 0;
+    margin-right: 0;
     box-shadow: 0 4px 20px rgba(180,130,180,0.09);
     border: 1px solid rgba(232,164,184,0.2);
     transition: transform 0.2s, box-shadow 0.2s;
@@ -432,8 +443,8 @@
   .event-card:active { transform: scale(0.98); }
   .event-dot {
     position: absolute;
-    left: -34px;
-    top: 22px;
+    left: -41px;
+    top: 19px;
     width: 22px;
     height: 22px;
     border-radius: 50%;
@@ -655,7 +666,7 @@
         </defs>
         <polygon points="50,4 61,18 78,12 78,30 94,38 88,55 98,68 82,74 80,92 63,88 50,98 37,88 20,92 18,74 2,68 12,55 6,38 22,30 22,12 39,18" fill="url(#sealGrad)" opacity="0.95"/>
         <circle cx="50" cy="50" r="26" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-        <text x="50" y="44" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="rgba(255,255,255,0.9)" font-style="italic">V &amp; Y</text>
+        <text x="50" y="44" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="rgba(255,255,255,0.9)" font-style="italic">A &amp; F</text>
         <text x="50" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="7.5" fill="rgba(255,255,255,0.65)" letter-spacing="1">2026</text>
         <ellipse cx="38" cy="34" rx="10" ry="5" fill="white" opacity="0.15" transform="rotate(-20 38 34)"/>
       </svg>
@@ -705,10 +716,12 @@
 
   <!-- ── WELCOME & BIOS ── -->
   <section class="welcome-section reveal">
-    <div class="welcome-title">✦ You Are Invited ✦</div>
-    <div class="welcome-heading">Welcome to Our<br>Sundowner Wedding</div>
+    <div class="welcome-title">✦ Together with our families we invite you ✦</div>
+    <br>
+    <div class="welcome-heading">Bismillah</div>
     <p class="welcome-para">
-      Two souls, one love story written in the stars. Join us as the golden hour sun melts into celebration, and two families become one. Your presence is our greatest joy.
+      In the name of Allah, the Most Gracious,the Most Merciful<br>
+      We invite you to celebrate the Nikah of two hearts, one beautiful journey written by Allah.
     </p>
 
     <div class="section-label" style="margin-bottom:20px;">Meet the Couple</div>
@@ -719,7 +732,7 @@
         <div>
           <div class="profile-tag">The Bride</div>
           <div class="profile-name">Faaiza</div>
-          <div class="profile-bio">A dreamer with flowers in her heart.<br>She walks in beauty, grace, and chai. ☕</div>
+          <div class="profile-bio">A dreamer with flowers in her heart.<br>She walks in beauty, grace, and coffee. ☕</div>
         </div>
       </div>
 
@@ -785,7 +798,7 @@
         <div class="event-date">📅 June 06, 2026 · The Big Day</div>
         <div class="event-venue">📍 Jashn Banquet, Kurla West</div>
         <div class="event-divider"></div>
-        <div class="event-desc">Feast on flavours of celebration. A lavish spread to fuel you up before the main event! 🍛</div>
+        <div class="event-desc">We invite you to join us for our Nikah ceremony as we begin this beautiful journey of love, faith, and togetherness.</div>
         <a class="event-map-btn" href="https://www.google.com/maps/place/Jashn+Banquet,+Kurla/@19.083645,72.8826503,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7c9004ba90455:0x3056e6d498af6824!8m2!3d19.083645!4d72.8852252!16s%2Fg%2F11xvly_x0h?entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">📌 View Location</a>
       </div>
 
@@ -794,14 +807,16 @@
         <div class="event-dot" style="border-color: var(--gold); background: linear-gradient(135deg,#fff5e0,#fce8d0);">🥂</div>
         <div class="event-top">
           <div class="event-name" style="color: var(--rose-deep); font-weight:600;">✨ Walima</div>
-          <div class="event-time-badge" style="background: linear-gradient(135deg,#fce8d0,#f8e0c8); color: #9a6030;">09:00 PM</div>
+          <!-- <div class="event-time-badge" style="background: linear-gradient(135deg,#fce8d0,#f8e0c8); color: #9a6030;">09:00 PM</div> -->
+          <div class="event-time-badge">09:00 PM</div>
         </div>
         <div class="event-date">📅 June 07, 2026 · Sundowner</div>
         <div class="event-venue">📍 Jashn Banquet, Kurla West</div>
         <div class="event-dress">👗 Dress Code: Traditional Elegance</div>
         <div class="event-divider" style="background: linear-gradient(to right, transparent, var(--gold-light), transparent);"></div>
-        <div class="event-desc">As the golden sun dips below the horizon, two hearts unite for eternity. The most magical moment of our lives — and we want you there. 🌅</div>
-        <a class="event-map-btn" href="https://www.google.com/maps/search/Sai+Farms+Badlapur" target="_blank" style="border-color: var(--gold-light); color: #9a6030; background: linear-gradient(135deg,#fff5e0,#fce8d0);">📌 View Location</a>
+        <div class="event-desc">Join us for an evening filled with joy, laughter, and blessings as we celebrate with our loved ones.</div>
+        <!-- <a class="event-map-btn" href="https://www.google.com/maps/search/Sai+Farms+Badlapur" target="_blank" style="border-color: var(--gold-light); color: #9a6030; background: linear-gradient(135deg,#fff5e0,#fce8d0);">📌 View Location</a> -->
+        <a class="event-map-btn" href="https://www.google.com/maps/search/Sai+Farms+Badlapur" target="_blank">📌 View Location</a>
       </div>
 
       <!-- RECEPTION -->
@@ -842,7 +857,7 @@
     <div class="footer-names">Faaiza & Avesh</div>
     <div class="footer-date">June 06, 2026 · Jashn Banquet, Kurla West</div>
     <div class="footer-quote">
-      "You are the finest, loveliest, tenderest person I have ever known — and even that is an understatement."
+      "May Allah bless this union with love, barakah, and endless happiness — Ameen.”
     </div>
     <div class="footer-hearts">🌸 💕 🌸</div>
   </footer>
@@ -855,10 +870,9 @@
     const params = new URLSearchParams(window.location.search);
     const ed = params.get('ed');
     
-    // Default: show all events, Faaiza first
+    // Default: if NO parameter, hide itinerary
     if (!ed) {
-      showAllEvents();
-      setNameOrder('faaiza');
+      hideItinerary();
       return;
     }
     
@@ -869,10 +883,12 @@
     // Validate format
     if (!['a', 'f'].includes(personInitial) || eventDates.some(d => ![4, 6, 7].includes(d))) {
       console.warn('Invalid ed parameter format');
-      showAllEvents();
-      setNameOrder('faaiza');
+      hideItinerary();
       return;
     }
+    
+    // Show itinerary (since we have valid parameter)
+    showItinerary();
     
     // Filter events based on dates
     filterEventsByDate(eventDates);
@@ -881,10 +897,18 @@
     setNameOrder(personInitial);
   }
   
-  function showAllEvents() {
-    document.querySelectorAll('[data-event]').forEach(card => {
-      card.style.display = '';
-    });
+  function hideItinerary() {
+    const itinerarySection = document.querySelector('.itinerary-section');
+    if (itinerarySection) {
+      itinerarySection.style.display = 'none';
+    }
+  }
+  
+  function showItinerary() {
+    const itinerarySection = document.querySelector('.itinerary-section');
+    if (itinerarySection) {
+      itinerarySection.style.display = '';
+    }
   }
   
   function filterEventsByDate(dates) {
