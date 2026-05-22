@@ -761,7 +761,7 @@
       </div> -->
 
       <!-- HALDI -->
-      <div class="event-card">
+      <div class="event-card" data-event="haldi">
         <div class="event-dot">💛</div>
         <div class="event-top">
           <div class="event-name">Haldi</div>
@@ -775,8 +775,8 @@
         <a class="event-map-btn" href="https://www.google.com/maps/place/Favorite+Banquets+Hall/@19.0750618,72.8801053,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7c9007a6603e5:0x70e02ce01598d488!8m2!3d19.0750618!4d72.8826802!16s%2Fg%2F11yf4wgkbr?entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">📌 View Location</a>
       </div>
 
-      <!-- LUNCH -->
-      <div class="event-card">
+      <!-- NIKAH -->
+      <div class="event-card" data-event="nikah">
         <div class="event-dot">☪️</div>
         <div class="event-top">
           <div class="event-name">Nikah</div>
@@ -789,8 +789,8 @@
         <a class="event-map-btn" href="https://www.google.com/maps/place/Jashn+Banquet,+Kurla/@19.083645,72.8826503,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7c9004ba90455:0x3056e6d498af6824!8m2!3d19.083645!4d72.8852252!16s%2Fg%2F11xvly_x0h?entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">📌 View Location</a>
       </div>
 
-      <!-- WEDDING (hero card) -->
-      <div class="event-card" style="border-color: var(--rose-light); box-shadow: 0 6px 32px rgba(200,120,155,0.18);">
+      <!-- WALIMA/RECEPTION (hero card) -->
+      <div class="event-card" data-event="walima" style="border-color: var(--rose-light); box-shadow: 0 6px 32px rgba(200,120,155,0.18);">
         <div class="event-dot" style="border-color: var(--gold); background: linear-gradient(135deg,#fff5e0,#fce8d0);">🥂</div>
         <div class="event-top">
           <div class="event-name" style="color: var(--rose-deep); font-weight:600;">✨ Walima</div>
@@ -850,6 +850,36 @@
 </div><!-- /page -->
 
 <script>
+  // ── EVENT FILTERING ──
+  function filterEvents() {
+    const params = new URLSearchParams(window.location.search);
+    const eventsParam = params.get('events');
+    
+    // If no events parameter, show all events
+    if (!eventsParam) {
+      document.querySelectorAll('[data-event]').forEach(card => {
+        card.style.display = '';
+      });
+      return;
+    }
+    
+    // Parse the events from URL (comma-separated, case-insensitive)
+    const allowedEvents = eventsParam.toLowerCase().split(',').map(e => e.trim());
+    
+    // Show/hide events based on filter
+    document.querySelectorAll('[data-event]').forEach(card => {
+      const eventType = card.getAttribute('data-event').toLowerCase();
+      if (allowedEvents.includes(eventType)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+  
+  // Run filter on page load
+  filterEvents();
+
   // ── COUNTDOWN ──
   function updateCountdown() {
     const target = new Date('2026-06-06T18:30:00').getTime();
